@@ -1,0 +1,43 @@
+name: TrustBoost PII Scanner
+description: Scan files for PII before they reach your LLM or get committed to your repository. Powered by TrustBoost.
+author: teodorofodocrispin-cmyk
+
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  files:
+    description: Glob pattern of files to scan for PII
+    required: false
+    default: '**/*.txt,**/*.md,**/*.json,**/*.csv'
+  wallet_address:
+    description: Your wallet identifier for TRIAL quota tracking
+    required: false
+    default: github-action
+  tx_hash:
+    description: Solana tx_hash for paid access. Use TRIAL for 50 free scans.
+    required: false
+    default: TRIAL
+  fail_on_critical:
+    description: Fail the workflow if CRITICAL PII is detected
+    required: false
+    default: 'true'
+  fail_on_private:
+    description: Fail the workflow if PRIVATE PII is detected
+    required: false
+    default: 'false'
+
+outputs:
+  pii_found:
+    description: Whether PII was found in any scanned file
+  files_scanned:
+    description: Number of files scanned
+  critical_count:
+    description: Number of files with CRITICAL PII
+  private_count:
+    description: Number of files with PRIVATE PII
+
+runs:
+  using: python3
+  main: src/scan.py

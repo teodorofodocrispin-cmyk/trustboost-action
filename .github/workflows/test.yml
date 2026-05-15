@@ -1,0 +1,28 @@
+name: Test TrustBoost Action
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Install dependencies
+        run: pip install requests
+      
+      - name: Test TrustBoost Action
+        uses: ./
+        with:
+          files: "**/*.md,**/*.txt"
+          fail_on_critical: "true"
+          fail_on_private: "false"
