@@ -10,34 +10,47 @@ inputs:
   files:
     description: Glob pattern of files to scan for PII
     required: false
-    default: '**/*.txt,**/*.md,**/*.json,**/*.csv'
+    default: "**/*.txt,**/*.md,**/*.json,**/*.csv"
   wallet_address:
     description: Your wallet identifier for TRIAL quota tracking
     required: false
     default: github-action
-  tx_hash:
-    description: Solana tx_hash for paid access. Use TRIAL for 50 free scans.
-    required: false
-    default: TRIAL
   fail_on_critical:
     description: Fail the workflow if CRITICAL PII is detected
     required: false
-    default: 'true'
+    default: "true"
   fail_on_private:
     description: Fail the workflow if PRIVATE PII is detected
     required: false
-    default: 'false'
+    default: "false"
 
 outputs:
   pii_found:
     description: Whether PII was found in any scanned file
+    value: ${{ steps.scan.outputs.pii_found }}
   files_scanned:
     description: Number of files scanned
+    value: ${{ steps.scan.outputs.files_scanned }}
   critical_count:
     description: Number of files with CRITICAL PII
+    value: ${{ steps.scan.outputs.critical_count }}
   private_count:
     description: Number of files with PRIVATE PII
+    value: ${{ steps.scan.outputs.private_count }}
 
 runs:
-  using: python3
-  main: src/scan.py
+  using: composite
+  steps:
+    - name: Install dependencies
+      shell: bash
+      run: pip install requests -q
+
+    - name: Run TrustBoost PII Scanner
+      id: scan
+      shell: bash
+      env:
+        INPUT_FILES: ${{ inputs.files }}
+        INPUT_WALLET_ADDRESS: ${{ inputs.wallet_address }}
+        INPUT_FAIL_ON_CRITICAL: ${{ inputs.fail_on_critical }}
+        INPUT_FAIL_ON_PRIVATE: ${{ inputs.fail_on_private }}
+      run: python3 ${{ github.action_path }}/src/scan.py
