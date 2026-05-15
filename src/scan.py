@@ -12,7 +12,8 @@ import requests
 
 
 def get_input(name: str, default: str = "") -> str:
-    return os.environ.get(f"INPUT_{name.upper().replace("-", "_")}", default)
+    key = "INPUT_" + name.upper().replace("-", "_")
+    return os.environ.get(key, default)
 
 
 def set_output(name: str, value: str):
