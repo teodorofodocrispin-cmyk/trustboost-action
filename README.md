@@ -1,7 +1,9 @@
 # TrustBoost PII Scanner — GitHub Action
 
 Scan your repository files for PII before commits reach production.
-Powered by [TrustBoost](https://github.com/teodorofodocrispin-cmyk/TrustBoost-PII-Sanitizer).
+Powered by [TrustBoost](https://github.com/teodorofodocrispin-cmyk/TrustBoost-PII-Sanitizer) v2.5.0.
+
+**New in v2.5.0:** Context-Aware Sanitization · Privacy Budget per Agent · TrustBoost Score · MCP Server compatible.
 
 ## Quick Start
 
@@ -32,6 +34,7 @@ jobs:
 | `wallet_address` | Wallet ID for quota tracking | `github-action` |
 | `fail_on_critical` | Fail if CRITICAL PII detected | `true` |
 | `fail_on_private` | Fail if PRIVATE PII detected | `false` |
+| `context` | Sanitization context: legal, financial, medical, code, general | `general` |
 
 ## Outputs
 
@@ -62,6 +65,14 @@ Detects PII in EN, ES (LATAM), PT (BR/PT), DE, JA — including:
 Uses TrustBoost preview endpoint — no wallet, no payment required for scanning.
 
 For full sanitization with audit trail: [TrustBoost TRIAL](https://github.com/teodorofodocrispin-cmyk/TrustBoost-PII-Sanitizer#trial)
+
+## Resources
+
+- GitHub: https://github.com/teodorofodocrispin-cmyk/TrustBoost-PII-Sanitizer
+- API: https://api.trustboost.dev/health
+- MCP Server: https://api.trustboost.dev/mcp
+- Glama: https://glama.ai/mcp/servers/teodorofodocrispin-cmyk/trustboost-api
+- ClawHub: https://clawhub.ai/teodorofodocrispin-cmyk/trustboost-pii-sanitizer
 
 ## License
 
