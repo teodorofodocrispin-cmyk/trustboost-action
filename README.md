@@ -56,9 +56,10 @@ jobs:
 
 ## Multilingual Support
 
-Detects PII in EN, ES (LATAM), PT (BR/PT), DE, JA — including:
+Detects PII in EN, ES (LATAM), PT (BR/PT), DE, JA, FR, IT, KO — including:
 - RFC (Mexico), CUIT (Argentina), CPF/CNPJ (Brazil)
 - Personalausweis (Germany), My Number (Japan)
+- NIR, SIRET (France), Codice Fiscale (Italy), 주민등록번호 RRN (Korea)
 
 ## Free Usage
 
