@@ -3,7 +3,7 @@
 Scan your repository files for PII before commits reach production.
 Powered by [TrustBoost](https://github.com/teodorofodocrispin-cmyk/TrustBoost-PII-Sanitizer) v2.5.0.
 
-**New in v2.5.0:** Context-Aware Sanitization · Privacy Budget per Agent · TrustBoost Score · MCP Server compatible.
+**New in v2.6.0:** Proof of Sanitization on Solana · Context-Aware Sanitization · Privacy Budget per Agent · TrustBoost Score · MCP Server compatible.
 
 ## Quick Start
 
